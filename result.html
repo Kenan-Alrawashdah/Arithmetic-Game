@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
+    <title>Document</title>
+
+    <style>
+        h1{
+            font-family: Apple Chancery, cursive;
+            animation-name: zoom;
+            animation-duration: 1.5s;
+            animation-iteration-count: infinite;
+            color: palevioletred;
+           
+        }
+        @keyframes drive {
+            from {
+                transform: translateX(0);
+            }
+            to{
+                transform: translateX(1100px);
+            }
+        }
+        @keyframes zoom{
+            0% {
+            transform: scale(1, 1);
+                }
+            50% {
+            transform: scale(1.5, 1.5);
+            }
+            100% {
+           transform: scale(1.7, 1.7);
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="container-fluid  p-0 m-0" style="height: 100vh; background-color: ">
+        <div class="p-0 m-0 d-flex justify-content-md-between">
+            <div class="pl-3">
+                <img id="img1" src="imag/img1.gif" alt="this slowpoke moves"  width="250" />
+            </div>
+            <div class=" d-flex align-items-center ">
+                <h1 id="til" class="d-flex justify-content-md-end pt-5 ">Congratulations </h1>
+            </div>
+            <div class="">
+                <img id="img2" src="imag/img1.gif" alt="this slowpoke moves"  width="250" />
+            </div>
+        </div>
+       
+        <div class="col text-center bg-white mt-4 pt-5">
+          <p class="p-1 font-weight-bold text-dark" style="font-size: 25px;">Name : <span  style="font-size: 25px; color: rgb(23, 231, 23);" id="nameId"></span></p>
+          <p class=" p-1 font-weight-bold text-dark"  style="font-size: 25px;">Age : <span style="font-size: 25px; color: rgb(23, 231, 23);" id="ageId"></span></p>
+           <p class="p-1 font-weight-bold text-dark"  style="font-size: 25px;"> Mark : <span style="font-size: 25px; color: rgb(23, 231, 23);" id="mark"></span></p>
+           <br>
+           <button id="bt2" type="button" class="btn btn-outline-success" onclick="moveHome()" >Try Again</button>
+        </div>
+
+        <div>
+            <audio id="musicplayer" >
+                <source src="meuz/aud.mp3">
+              </audio>
+        </div>
+     </div>
+
+     <script>
+      
+
+      document.body.addEventListener("mousemove", function () {
+      document.getElementById('musicplayer').play();
+        });
+
+        const name = localStorage.getItem('name');
+        const age = localStorage.getItem('age');
+        const mark = localStorage.getItem('mark');
+        const numQ = localStorage.getItem('numQ');
+
+        document.getElementById('nameId').innerText = name;;
+        document.getElementById('ageId').innerText = age;
+        document.getElementById('mark').innerText =mark +"/"+(numQ * 2);
+         switch(numQ){
+            case '5' : 
+            if(mark < 7){
+                addAtt();
+            }
+            break;
+            case '10' : 
+            if(mark < 15){
+                addAtt();
+            }
+            break;
+            case '25' :   
+            if(mark < 45){
+               addAtt();  
+            }
+            break;
+         }
+
+
+
+         function addAtt(){
+            document.getElementById('musicplayer').src = "meuz/aud2.mp3";
+            let img2 = document.getElementById('img2');
+             img2.remove();  
+             let img1 = document.getElementById('img1');
+             img1.remove();   
+             document.getElementById('til').innerText = "Hard Luck";
+         }
+
+         function moveHome(){
+            window.location.href = "index.html";
+
+         }
+         
+     </script>
+</body>
+</html>
